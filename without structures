@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+int comparator(const void *p,const void *q)
+{
+    char *str1 = *(int*)p;
+    char *str2 = *(int*)q;
+    return strcmp(str1,str2);
+}
+
+int main()
+{
+    int n;
+    int num;
+    printf("Enter number of strings\n");
+    scanf("%d",&num);
+    char **a;
+    a= (char **)malloc(num*sizeof(char *));
+    char *str;
+    for(int i=0;i<num;i++)
+    {
+        char s[1000] = "";
+        printf("Enter the %d string\n",i+1);
+        scanf("%s",s);
+        str=malloc(sizeof(s));
+        for(int j=0;s[j] !='\0';j++)
+           {
+               *(str+j)= s[j];
+           }
+        a[i]=str;
+    }
+    qsort(void *a, num, sizeof(a[0]), comparator);
+    
+    for(int i=0;i<num;i++)
+    {
+
+        printf("%s",a[i]);
+        printf("\n");
+    }
+    return 0;
+}
